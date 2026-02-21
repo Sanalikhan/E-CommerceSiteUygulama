@@ -147,7 +147,11 @@ exampleApplications: [
 const catalogSlice = createSlice({
     name: 'catalog',
     initialState,
-    reducers:{}
+    reducers:{
+            setFilter : (state,action) =>{
+        state.activeFilter = action.payload;
+      }
+    }
 });
-
+export const {setFilter} = catalogSlice.actions;
 export default catalogSlice.reducer;
