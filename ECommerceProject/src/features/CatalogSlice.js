@@ -1,5 +1,5 @@
 import {createSlice} from "@reduxjs/toolkit";
-
+import { Products } from "../components/layout/sections/Products";
 
 const initialState = {
     banner: {
@@ -62,96 +62,112 @@ exampleApplications: [
     min: 1523.66,
     max: 1544.67
   },
-  featured: true
+  featured: true,
+  popular : false
 },
     {
       id: 2,
       image: "/images/AdobeExpressfile(9)1.png",
       title: '36" Small Parts Storage and Security Cabinets',
       price: { min: 1933.93, max: 2180.76 },
-      featured: true
+      featured: true,
+      popular: false
     },
     {
       id: 3,
       image: "/images/image-4.png",
       title: "Adjustable Spring Safety Gate",
       price: { min: 159.91, max: 199.55 },
-      featured: true
+      featured: true,
+      popular: true
     },
     {
       id: 4,
       image: "/images/image-5.png",
       title: "All Welded Heavy Duty Gear Lockers",
       price: { min: 534.61, max: 1172.86 },
-      featured: true
+      featured: true,
+      popular: false
     },
     {
       id: 5,
       image: "/images/image-10.png",
       title: "All Welded Heavy Duty Storage Cabinet Lockers",
       price: { min: 843.47, max: 1178.0 },
-      featured: false
+      featured: false,
+      popular: true
     },
     {
       id: 6,
       image: "/images/image-11.png",
       title: "Barriers",
       price: { min: 1186.0, max: 5611.0 },
-      featured: false
+      featured: false,
+      popular: true
     },
     {
       id: 7,
       image: "/images/image-12.png",
       title: "Bollard Cover",
       price: { min: 40.95, max: 112.95 },
-      featured: false
+      featured: false,
+      popular: true
     },
     {
       id: 8,
       image: "/images/image-13.png",
       title: "Bollard Covers",
       price: { min: 35.99, max: 79.99 },
-      featured: false
+      featured: false,
+      popular: false
     },
     {
   id: 9,
   title: "Bollards",
   image: "/images/image-14.png",
   price: { min: 93.10, max: 267.93 },
-  featured: false
+  featured: false,
+  popular: true
 },
 {
   id: 10,
   title: "Bolt Down Bollards",
   image: "/images/image-15.png",
   price: { min: 199.95, max: 629.95 },
-  featured: false
+  featured: false,
+  popular: true
 },
 {
   id: 11,
   title: "Bounce Back Bollard",
   image: "/images/image-16.png",
   price: { min: 159.91, max: 199.55 },
-  featured: false
+  featured: false, 
+  popular: false
 },
 {
   id: 12,
   title: "Box Lockers",
   image: "/images/image-17.png",
   price: { min: 534.61, max: 1172.86 },
-  featured: false
+  featured: false, 
+  popular: true
 }
-
-  ]
+  ],
+  activeFilter : "Latest",
+  searchTerm : ""
 };
 const catalogSlice = createSlice({
     name: 'catalog',
     initialState,
     reducers:{
-            setFilter : (state,action) =>{
+      setFilter : (state,action) =>{
         state.activeFilter = action.payload;
+      },
+      setSearchTerm : (state,action) =>{
+        state.searchTerm = action.payload;
       }
     }
 });
-export const {setFilter} = catalogSlice.actions;
+export const {setFilter, setSearchTerm} = catalogSlice.actions;
 export default catalogSlice.reducer;

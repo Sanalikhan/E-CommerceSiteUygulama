@@ -5,6 +5,7 @@ import  KeyCharacteristics from "../components/layout/sections/KeyCharacteristic
 import ExampleApplications from "../components/layout/sections/ExampleApplications";
 import { useRef } from "react";
 import { Products } from "../components/layout/sections/Products";
+
 export default function HomePage(){
     const productsRef = useRef(null);
 

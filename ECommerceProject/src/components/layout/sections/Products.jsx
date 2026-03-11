@@ -4,7 +4,7 @@ import { Tab } from "../../others/tab";
 import Pagination from "../../others/pagination";
 export function Products(){
 
-    const {products, activeFilter} = useSelector((state)=> state.catalog);
+    const {products, activeFilter, searchTerm} = useSelector((state)=> state.catalog);
     let filteredProducts = [...products];
 
     //filtering based on opened tab
@@ -13,7 +13,7 @@ export function Products(){
         filteredProducts = products.filter(product=> product.featured === true);
         break;
 
-        case "Popular":
+        case "popular":
         filteredProducts = products.filter(product=> product.popular === true);
         break;
 
@@ -28,12 +28,15 @@ export function Products(){
         default:
         filteredProducts = products;
     }
-    
+    if (searchTerm.trim() !== ""){
+        filteredProducts = filteredProducts.filter(product=> product.title.toLowerCase().includes(searchTerm.toLowerCase()));
+    }
     return (
         <div className="flex flex-col" >
             <Tab/>
             <div className="grid grid-col-1 justify-center sm:grid-cols-2 sm:justify-center sm:mx-auto sm:gap-x-10 lg:grid-cols-4 lg:px-10">
             {filteredProducts.map((product)=> <ProductCard 
+            id = {product.id} 
             title={product.title}
             image={product.image}
             price={product.price}
