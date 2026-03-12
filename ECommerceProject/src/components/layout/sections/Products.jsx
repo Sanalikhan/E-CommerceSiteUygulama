@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux"
 import ProductCard from "../../Cards/ProductCard";
-import { Tab } from "../../others/tab";
-import Pagination from "../../others/pagination";
+import { Tab } from "../../others/Tab";
+
 export function Products(){
 
     const {products, activeFilter, searchTerm} = useSelector((state)=> state.catalog);
@@ -42,7 +42,6 @@ export function Products(){
             price={product.price}
             featured={product.featured}/>)}
             </div>
-            <Pagination/>
         </div>
 
     )

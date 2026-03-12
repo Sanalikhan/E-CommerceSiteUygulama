@@ -5,6 +5,7 @@ import ExampleApplications from "../components/layout/sections/ExampleApplicatio
 import { Products } from "../components/layout/sections/Products";
 import { useRef } from "react";
 import Cart from "../components/layout/Cart";
+import Footer from "../components/layout/sections/Footer";
 
 export default function HomePage(){
 
@@ -26,7 +27,7 @@ export default function HomePage(){
             <div ref={productsRef}>
             <Products/>
             </div>
-
+            <Footer/>
             <Cart/>
             
             </div>
