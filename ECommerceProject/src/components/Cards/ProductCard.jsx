@@ -1,4 +1,11 @@
-export default function ProductCard({ title, image, price, featured }) {
+import { useDispatch } from "react-redux";
+import { addItem } from "../../features/cartSlice";
+import { Confirmation } from "./Confirmation";
+import { useState } from "react";
+export default function ProductCard({ id,title, image, price, featured }) {
+const [confirmationVisible, setConfirmationVisible] = useState(false);
+const dispatch = useDispatch();
+
   return (
     <div className="bg-white rounded-2xl flex flex-col w-75 sm:w-70 lg:w-60 mb-16 font-nunito mt-5">
 
@@ -40,15 +47,30 @@ export default function ProductCard({ title, image, price, featured }) {
       {/* Buttons */}
       <div className="flex gap-3 lg:gap-1 px-1 lg:px-0">
 
-        <button className="bg-[#FFA920] font-nunito text-gray-700 px-4 py-3 rounded-full text-sm font-medium w-[50%]">
+        <button className="bg-[#FFA920] font-nunito text-white px-4 py-3 rounded-full text-sm font-medium w-[50%]"
+        onClick={()=> {
+          setConfirmationVisible(true);
+          dispatch(addItem({
+            id,
+            title,
+            image,
+            price
+          }));
+        }
+        }
+        >
           Add to Cart
         </button>
 
-        <button className="bg-gray-100 text-gray-700 px-4 py-3 rounded-full text-sm w-[50%]">
+        {<button className="bg-gray-100 text-gray-700 px-4 py-3 rounded-full text-sm w-[50%]">
           Select options
-        </button>
+        </button>}
 
       </div>
+      {confirmationVisible && (
+        <Confirmation 
+        onClose = {()=> setConfirmationVisible(false)}/>
+      )}
     </div>
   );
 }
