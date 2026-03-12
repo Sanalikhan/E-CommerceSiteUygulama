@@ -1,4 +1,4 @@
-import call from "../../assets/call.png"
+
 export function ContactFooterGrid(){
     return (
         <div className="grid grid-cols-[1fr_5fr] grid-row-7  gap-x-1 gap-y-3 items-center text-xs font-semibold relative">

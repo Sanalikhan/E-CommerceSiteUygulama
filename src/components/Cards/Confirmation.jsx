@@ -1,5 +1,5 @@
 import { useDispatch } from "react-redux";
-import { showCart } from "../../features/cartSlice";
+import { showCart } from "../../features/CartSlice";
 export function Confirmation({ onClose }) {
     const dispatch = useDispatch();
   return (
