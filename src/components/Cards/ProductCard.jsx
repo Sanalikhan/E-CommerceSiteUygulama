@@ -1,5 +1,5 @@
 import { useDispatch } from "react-redux";
-import { addItem } from "../../features/cartSlice";
+import { addItem } from "../../features/CartSlice";
 import { Confirmation } from "./Confirmation";
 import { useState } from "react";
 export default function ProductCard({ id,title, image, price, featured }) {
