@@ -8,7 +8,6 @@ export default function Footer(){
         <div className="bg-[#2F2D42] text-gray-300 w-full flex flex-col items-center relative">
         <Newsletter/>
         <img src={logo} alt="logo" className="md:w-70 w-50 absolute top-35 lg:left-40 md:left-30 sm:left-20 left-10"/>
-       
     <div className="bg-[#2F2D42] w-[90%] sm:w-[70%] text-white py-14 mt-4">
 
       {/* Top section */}
@@ -23,6 +22,7 @@ export default function Footer(){
           <button className="bg-[#FFA920] text-white text-xs sm:text-base w-fit px-6 py-3 rounded-full">
             Contact Us
           </button>
+          
 
           <div className="flex items-center ">
             <div className="h-0.5 bg-gray-300 rounded-full w-4"></div>

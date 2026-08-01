@@ -1,9 +1,9 @@
 import Header from "../components/layout/sections/Header"
 import Banner from "../components/layout/sections/Banner";
-import  KeyCharacteristics from "../components/layout/sections/KeyCharacteristics";
+import KeyCharacteristics from "../components/layout/sections/KeyCharacteristics";
 import ExampleApplications from "../components/layout/sections/ExampleApplications";
 import { Products } from "../components/layout/sections/Products";
-import { useRef } from "react";
+import { useRef }  from "react";
 import Cart from "../components/layout/Cart";
 import Footer from "../components/layout/sections/Footer";
 
@@ -29,8 +29,6 @@ export default function HomePage(){
             </div>
             <Footer/>
             <Cart/>
-            
-            </div>
-
+        </div>
     );
-}
+}                                                                              

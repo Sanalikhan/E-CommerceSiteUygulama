@@ -8,9 +8,6 @@ const iconsMap = {
     organization:group
 };
 export function KeyCharacteristicsCard({title, description, icon}){
-
-
-
     return (
         <div className='flex-col mb-2 md:mb-20'>
             <div className='bg-white rounded-2xl md:pl-6 pt-6 pb-2 md:pr-6 font-nunito px-5'>            
