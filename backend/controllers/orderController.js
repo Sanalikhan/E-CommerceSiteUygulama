@@ -3,6 +3,7 @@ import { Order, OrderItem, Product } from '../models/index.js';
 export const createOrder = async (req, res, next) => {
   try {
     const { items } = req.body;
+    const userId = req.user?.id ?? null;
 
     if (!Array.isArray(items) || items.length === 0) {
       return res.status(400).json({ error: 'Order items are required' });
@@ -31,7 +32,7 @@ export const createOrder = async (req, res, next) => {
     });
 
     const order = await Order.create({
-      userId: req.user.id,
+      userId,
       totalAmount,
       status: 'pending',
     });

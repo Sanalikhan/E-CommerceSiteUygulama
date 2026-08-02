@@ -1,12 +1,21 @@
 import { useSelector, useDispatch } from "react-redux";
-import { showCart, deleteItem,increaseQuantity,decreaseQuantity } from "../../features/CartSlice";
+import { showCart, deleteItem, increaseQuantity, decreaseQuantity, submitOrder, clearCart } from "../../features/CartSlice";
 
+export default function Cart() {
+  const dispatch = useDispatch();
+  const { items, isOpen, orderStatus, orderError } = useSelector((state) => state.cart);
 
-export default function Cart(){
-const dispatch = useDispatch();
-const {items, isOpen} = useSelector((state)=> state.cart);
+  const totalPrice = items.reduce((total, item) => total + item.price.min * item.quantity, 0);
 
-const totalPrice = items.reduce((total, item)=> total + item.price.min * item.quantity, 0);
+  const handleCheckout = () => {
+    if (items.length === 0 || orderStatus === 'loading') return;
+    const payload = items.map((item) => ({ productId: item.id, quantity: item.quantity }));
+    dispatch(submitOrder(payload));
+  };
+
+  const handleClearCart = () => {
+    dispatch(clearCart());
+  };
 
     return (
         <>
@@ -86,13 +95,34 @@ const totalPrice = items.reduce((total, item)=> total + item.price.min * item.qu
 
           </div>
 
-          <div className="border-t pt-4">
+          <div className="border-t pt-4 space-y-4">
             <div className="flex justify-between font-bold">
               <span>Total</span>
               <span>${totalPrice.toFixed(2)}</span>
             </div>
+            {orderStatus === 'failed' && (
+              <div className="text-sm text-red-600">{orderError}</div>
+            )}
+            {orderStatus === 'succeeded' && (
+              <div className="text-sm text-green-600">Order placed successfully!</div>
+            )}
+            <div className="flex gap-3">
+              <button
+                onClick={handleCheckout}
+                disabled={items.length === 0 || orderStatus === 'loading'}
+                className="flex-1 bg-[#FFA920] text-white px-4 py-3 rounded-full text-sm font-medium disabled:opacity-50"
+              >
+                {orderStatus === 'loading' ? 'Placing Order...' : 'Checkout'}
+              </button>
+              <button
+                onClick={handleClearCart}
+                disabled={items.length === 0}
+                className="flex-1 bg-gray-200 text-gray-700 px-4 py-3 rounded-full text-sm font-medium disabled:opacity-50"
+              >
+                Clear Cart
+              </button>
+            </div>
           </div>
-
 
         </div>
         </div>
