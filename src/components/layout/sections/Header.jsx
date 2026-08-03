@@ -1,43 +1,56 @@
- import logo from "../../../assets/801.png"
- import call from "../../../assets/call.png"
- import search from "../../../assets/search.png"
- 
- 
- export default function Header(){
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
+import logo from "../../../assets/801.png";
 
-    return (
-        <header className="flex bg-[#650404] w-full justify-center">
-            <div className="flex lg:gap-5 lg:h-32 lg:px-12 items-center justify-between md:py-4 p-5 w-full sm:p-5">
-                    {/*logo */}
-            <div>
-                        <img className="md:w-50 lg:w-60 sm:w-50 w-40" src={logo} alt="logo"/>
-                    </div>
+export default function Header() {
+  const [menuOpen, setMenuOpen] = useState(false);
 
-                    {/*nav links*/}
-                    <ul className="hidden sm:flex sm:gap-3 md:gap-5 lg:gap-18 text-white sm:items-center text-[10px] sm:text-[8px] md:text-xs lg:text-lg font-nunito">
-                        <li className="flex items-center">
-                            <div>About Us</div>
-                            <svg className="hidden md:w-4 md:h-4  text-white dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 9-7 7-7-7"/>
-                         </svg>
-                        </li>
-                        <li>Contact Us</li>
-                        <li>Products</li>
-                        <li>Customized Solutions</li>
-                        <li>Services</li>
-                    </ul>
+  return (
+    <header className="bg-[#650404] w-full text-white">
+      <div className="mx-auto flex max-w-[1400px] items-center justify-between px-5 py-10 sm:px-8 lg:px-10">
+        <div className="flex items-center">
+          <img className="h-10 w-auto sm:h-12" src={logo} alt="logo" />
+        </div>
 
-                    {/*contact number and search*/}
-                    <div className="flex gap-4 md:gap-4 lg:gap-14">
-                        <div className="flex items-center gap-2 text-white">
-                        <img className="h-3" src={call}/>
-                        <p className="font-nunito text-[10px] md:text-xs lg:text-lg">800-922-6120</p>
-                        </div>
-                        <img className="w-8 h-8 lg:h-12 lg:w-12 bg-white rounded-full" src={search} alt= "search icon"/>
-                    </div>
+        <button
+          type="button"
+          onClick={() => setMenuOpen((open) => !open)}
+          className="sm:hidden rounded-full border border-white/20 bg-white/10 px-3 py-2 text-white"
+          aria-expanded={menuOpen}
+        >
+          Menu
+        </button>
 
-                </div>
-            
-
-        </header>
-    )
+        <nav className={`absolute inset-x-0 top-full z-20 bg-[#650404] px-5 pb-5 transition-all duration-300 sm:static sm:block sm:w-auto sm:px-0 ${menuOpen ? 'block' : 'hidden'}`} >
+          <ul className="flex flex-col gap-3 text-[12px] font-nunito sm:flex-row sm:items-center sm:gap-6 lg:gap-8">
+            <li>
+              <Link to="/about" className="block text-white transition hover:text-[#FFD18F]" onClick={() => setMenuOpen(false)}>
+                About Us
+              </Link>
+            </li>
+            <li>
+              <Link to="/contact" className="block text-white transition hover:text-[#FFD18F]" onClick={() => setMenuOpen(false)}>
+                Contact Us
+              </Link>
+            </li>
+            <li>
+              <Link to="/products" className="block text-white transition hover:text-[#FFD18F]" onClick={() => setMenuOpen(false)}>
+                Products
+              </Link>
+            </li>
+            <li>
+              <Link to="/customized-solutions" className="block text-white transition hover:text-[#FFD18F]" onClick={() => setMenuOpen(false)}>
+                Customized Solutions
+              </Link>
+            </li>
+            <li>
+              <Link to="/services" className="block text-white transition hover:text-[#FFD18F]" onClick={() => setMenuOpen(false)}>
+                Services
+              </Link>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+  );
 }

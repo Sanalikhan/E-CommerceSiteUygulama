@@ -3,6 +3,7 @@ import Product from './Product.js';
 import User from './User.js';
 import Order from './Order.js';
 import OrderItem from './OrderItem.js';
+import ContactMessage from './ContactMessage.js';
 
 User.hasMany(Order, { foreignKey: 'userId' });
 Order.belongsTo(User, { foreignKey: 'userId' });
@@ -13,4 +14,4 @@ OrderItem.belongsTo(Order, { foreignKey: 'orderId' });
 Product.hasMany(OrderItem, { foreignKey: 'productId' });
 OrderItem.belongsTo(Product, { foreignKey: 'productId' });
 
-export { sequelize, Product, User, Order, OrderItem };
+export { sequelize, Product, User, Order, OrderItem, ContactMessage };

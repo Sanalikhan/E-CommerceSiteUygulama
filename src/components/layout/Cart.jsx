@@ -28,14 +28,14 @@ export default function Cart() {
         <div className={`fixed top-0 right-0 h-full w-96 bg-white z-40 transform transition-transform duration-300 ${isOpen? "translate-x-0": "translate-x-full" }`}>
              <div className="p-6 flex flex-col h-full">
 
-          <div className="flex justify-between mb-6">
+          <div className="flex justify-between mb-6 text-black">
             <h2 className="text-xl font-bold">Your Cart</h2>
             <button onClick={() => dispatch(showCart(false))}>
               ✕
             </button>
           </div>
 
-          <div className="flex flex-col gap-6 flex-1 overflow-y-auto">
+          <div className="flex flex-col gap-6 flex-1 overflow-y-auto text-black">
 
             {items.map(item => (
               <div key={item.id} className="flex gap-4">

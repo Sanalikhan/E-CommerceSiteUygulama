@@ -5,6 +5,7 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import { sequelize } from './models/index.js';
 import authRoutes from './routes/auth.js';
+import contactRoutes from './routes/contact.js';
 import orderRoutes from './routes/orders.js';
 import productRoutes from './routes/products.js';
 import { seedInitialProducts } from './controllers/productController.js';
@@ -22,6 +23,7 @@ app.use(cors());
 app.use(express.json());
 
 app.use('/api/auth', authRoutes);
+app.use('/api/contact', contactRoutes);
 app.use('/api/orders', orderRoutes);
 app.use('/api/products', productRoutes);
 

@@ -7,7 +7,7 @@ export default function ExampleApplications() {
   );
 
   return (
-    <section className="w-full bg-white px-4 lg:px-16 flex-col items-center">
+    <section className="w-full bg-white text-black px-4 lg:px-16 flex-col items-center">
       <h2 className="font-extrabold font-nunitoSans text-3xl md:text-5xl sm:text-3xl lg:text-5xl  text-center my-5 sm:my-14 lg:my-14">
       Example Applications
       </h2>

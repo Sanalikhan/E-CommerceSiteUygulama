@@ -41,7 +41,7 @@ export function Products() {
         filteredProducts = filteredProducts.filter(product=> product.title.toLowerCase().includes(searchTerm.toLowerCase()));
     }
     return (
-        <div className="flex flex-col">
+        <div className="flex flex-col bg-white">
             <Tab/>
             {status === 'loading' && (
                 <div className="text-center py-16 text-gray-600">Loading products...</div>

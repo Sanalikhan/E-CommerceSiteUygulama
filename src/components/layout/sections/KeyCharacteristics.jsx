@@ -5,7 +5,7 @@ export default function KeyCharacteristics(){
 const keyChar =useSelector((state)=> state.catalog.KeyCharacteristics);
 
 return (
-    <div className="flex flex-col mx-auto sm:px-2 lg:px-16 bg-[#FFF4E0]">
+    <div className="flex flex-col mx-auto sm:px-2 lg:px-16 bg-[#FFF4E0] text-black">
     <h2 className="font-nunitoSans font-extrabold pt-10 sm:pt-14 md:pt-24 text-3xl md:text-5xl text-center pb-10">
         Key Characteristics
     </h2>
