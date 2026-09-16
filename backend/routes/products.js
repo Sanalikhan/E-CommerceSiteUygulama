@@ -1,10 +1,19 @@
 import express from 'express';
-import { getProducts, getProductById, seedProducts } from '../controllers/productController.js';
+import authMiddleware, { adminOnly } from '../middleware/authMiddleware.js';
+import {
+  getProducts,
+  getProductById,
+  createProduct,
+  deleteProduct,
+  seedProducts,
+} from '../controllers/productController.js';
 
 const router = express.Router();
 
 router.get('/', getProducts);
 router.get('/:id', getProductById);
-router.post('/seed', seedProducts);
+router.post('/', authMiddleware, adminOnly, createProduct);
+router.delete('/:id', authMiddleware, adminOnly, deleteProduct);
+router.post('/seed', authMiddleware, adminOnly, seedProducts);
 
 export default router;

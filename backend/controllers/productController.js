@@ -133,6 +133,45 @@ export const getProductById = async (req, res, next) => {
   }
 };
 
+export const createProduct = async (req, res, next) => {
+  try {
+    const { title, image, priceMin, priceMax, featured, popular } = req.body;
+
+    if (!title || !image || priceMin === undefined || priceMax === undefined) {
+      return res.status(400).json({ error: 'Title, image, min price, and max price are required' });
+    }
+
+    const product = await Product.create({
+      title,
+      image,
+      priceMin: Number(priceMin),
+      priceMax: Number(priceMax),
+      featured: Boolean(featured),
+      popular: Boolean(popular),
+    });
+
+    res.status(201).json({ message: 'Product created successfully', product: formatProduct(product) });
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const deleteProduct = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const product = await Product.findByPk(id);
+
+    if (!product) {
+      return res.status(404).json({ error: 'Product not found' });
+    }
+
+    await product.destroy();
+    res.json({ message: 'Product deleted successfully' });
+  } catch (error) {
+    next(error);
+  }
+};
+
 export const seedProducts = async (req, res, next) => {
   try {
     const currentCount = await Product.count();

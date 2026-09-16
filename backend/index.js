@@ -2,12 +2,14 @@ import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import path from 'path';
+import bcrypt from 'bcryptjs';
 import { fileURLToPath } from 'url';
-import { sequelize } from './models/index.js';
+import { sequelize, User } from './models/index.js';
 import authRoutes from './routes/auth.js';
 import contactRoutes from './routes/contact.js';
 import orderRoutes from './routes/orders.js';
 import productRoutes from './routes/products.js';
+import adminRoutes from './routes/admin.js';
 import { seedInitialProducts } from './controllers/productController.js';
 import { notFound, errorHandler } from './middleware/errorHandler.js';
 
@@ -26,6 +28,7 @@ app.use('/api/auth', authRoutes);
 app.use('/api/contact', contactRoutes);
 app.use('/api/orders', orderRoutes);
 app.use('/api/products', productRoutes);
+app.use('/api/admin', adminRoutes);
 
 app.get('/api/status', (req, res) => {
   res.json({ ok: true, message: 'Backend is running!' });
@@ -43,11 +46,29 @@ if (process.env.NODE_ENV === 'production') {
 app.use(notFound);
 app.use(errorHandler);
 
+const ensureDefaultAdmin = async () => {
+  const adminEmail = 'admin@cecmhs.com';
+  const existingAdmin = await User.findOne({ where: { email: adminEmail } });
+
+  if (!existingAdmin) {
+    await User.create({
+      name: 'System Admin',
+      username: 'admin',
+      email: adminEmail,
+      passwordHash: await bcrypt.hash('admin123', 10),
+      role: 'admin',
+      termsAccepted: true,
+    });
+    console.log('Default admin created: admin@cecmhs.com / admin123');
+  }
+};
+
 const startServer = async () => {
   try {
     await sequelize.authenticate();
-    await sequelize.sync();
+    await sequelize.sync({ alter: true });
     await seedInitialProducts();
+    await ensureDefaultAdmin();
     console.log('Database connected, models synced, and initial products seeded.');
 
     app.listen(PORT, () => {

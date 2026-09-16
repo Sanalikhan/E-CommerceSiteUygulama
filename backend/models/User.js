@@ -7,6 +7,15 @@ const User = sequelize.define('User', {
     autoIncrement: true,
     primaryKey: true,
   },
+  name: {
+    type: DataTypes.STRING,
+    allowNull: true,
+  },
+  username: {
+    type: DataTypes.STRING,
+    allowNull: true,
+    unique: true,
+  },
   email: {
     type: DataTypes.STRING,
     allowNull: false,
@@ -15,13 +24,26 @@ const User = sequelize.define('User', {
       isEmail: true,
     },
   },
+  phone: {
+    type: DataTypes.STRING,
+    allowNull: true,
+  },
   passwordHash: {
     type: DataTypes.STRING,
-    allowNull: false,
+    allowNull: true,
+    defaultValue: null,
+  },
+  picture: {
+    type: DataTypes.STRING,
+    allowNull: true,
   },
   role: {
     type: DataTypes.STRING,
     defaultValue: 'customer',
+  },
+  termsAccepted: {
+    type: DataTypes.BOOLEAN,
+    defaultValue: false,
   },
 });
 

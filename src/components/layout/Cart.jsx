@@ -4,10 +4,15 @@ import { showCart, deleteItem, increaseQuantity, decreaseQuantity, submitOrder, 
 export default function Cart() {
   const dispatch = useDispatch();
   const { items, isOpen, orderStatus, orderError } = useSelector((state) => state.cart);
+  const user = useSelector((state) => state.auth.user);
 
   const totalPrice = items.reduce((total, item) => total + item.price.min * item.quantity, 0);
 
   const handleCheckout = () => {
+    if (!user) {
+      alert('Please sign in to place your order.');
+      return;
+    }
     if (items.length === 0 || orderStatus === 'loading') return;
     const payload = items.map((item) => ({ productId: item.id, quantity: item.quantity }));
     dispatch(submitOrder(payload));

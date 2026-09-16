@@ -17,19 +17,19 @@ export default function ServicesPage() {
         </div>
 
         <div className="grid gap-8 lg:grid-cols-3">
-          <div className="rounded-[32px] border border-white/10 bg-[#1f1d33] p-8 shadow-xl shadow-black/20">
+          <div className="rounded-4xl border border-white/10 bg-[#1f1d33] p-8 shadow-xl shadow-black/20">
             <h2 className="text-xl font-semibold text-white">Site Assessment</h2>
             <p className="mt-4 text-gray-300 leading-7">
               We evaluate your workspace layout and safety needs to recommend the best storage and security systems.
             </p>
           </div>
-          <div className="rounded-[32px] border border-white/10 bg-[#1f1d33] p-8 shadow-xl shadow-black/20">
+          <div className="rounded-4xl  border border-white/10 bg-[#1f1d33] p-8 shadow-xl shadow-black/20">
             <h2 className="text-xl font-semibold text-white">Custom Engineering</h2>
             <p className="mt-4 text-gray-300 leading-7">
               Engineering support helps you choose reinforced products, cage configurations, and access controls that meet compliance requirements.
             </p>
           </div>
-          <div className="rounded-[32px] border border-white/10 bg-[#1f1d33] p-8 shadow-xl shadow-black/20">
+          <div className="rounded-4xl  border border-white/10 bg-[#1f1d33] p-8 shadow-xl shadow-black/20">
             <h2 className="text-xl font-semibold text-white">Installation Guidance</h2>
             <p className="mt-4 text-gray-300 leading-7">
               We provide expert guidance for installation and layout to ensure your equipment performs as expected from day one.
@@ -37,7 +37,7 @@ export default function ServicesPage() {
           </div>
         </div>
 
-        <div className="mt-10 rounded-[32px] border border-white/10 bg-[#1f1d33] p-8 shadow-xl shadow-black/20">
+        <div className="mt-10 rounded-4xl  border border-white/10 bg-[#1f1d33] p-8 shadow-xl shadow-black/20">
           <h2 className="text-2xl font-semibold text-white">Ongoing Support</h2>
           <p className="mt-4 text-gray-300 leading-7">
             We partner with you beyond purchase through spare part sourcing, product updates, and responsive customer service for any facility changes.
