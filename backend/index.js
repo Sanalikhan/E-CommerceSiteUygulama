@@ -10,6 +10,7 @@ import contactRoutes from './routes/contact.js';
 import orderRoutes from './routes/orders.js';
 import productRoutes from './routes/products.js';
 import adminRoutes from './routes/admin.js';
+import whatsappRoutes from './routes/whatsapp.js';
 import { seedInitialProducts } from './controllers/productController.js';
 import { notFound, errorHandler } from './middleware/errorHandler.js';
 
@@ -29,6 +30,7 @@ app.use('/api/contact', contactRoutes);
 app.use('/api/orders', orderRoutes);
 app.use('/api/products', productRoutes);
 app.use('/api/admin', adminRoutes);
+app.use('/api/send-whatsapp', whatsappRoutes);
 
 app.get('/api/status', (req, res) => {
   res.json({ ok: true, message: 'Backend is running!' });

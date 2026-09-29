@@ -46,5 +46,21 @@ Sepet verileri ve uygulama durumu merkezi bir store üzerinden yönetilmektedir.
 - Tailwind CSS
 - JavaScript (ES6)
 
+## WhatsApp Destek Butonu
+
+Uygulamanın tüm sayfalarında sağ altta sabit bir WhatsApp destek butonu bulunur. Buton, müşteriyi WhatsApp'ta destek numarasına yönlendirir ve hazır bir mesaj açar.
+
+Farklı bir WhatsApp numarası kullanmak için proje kökünde `.env` dosyasında ülke kodu dahil yalnızca rakamlardan oluşan `VITE_WHATSAPP_NUMBER` değerini ayarlayın:
+
+
+To enable visitor-submitted WhatsApp messages, configure these variables in the backend environment (for example, `backend/.env`). Never prefix these with `VITE_` or put the access token in frontend configuration:
+
+```env
+WHATSAPP_ACCESS_TOKEN=your_cloud_api_access_token
+WHATSAPP_PHONE_NUMBER_ID=your_cloud_api_phone_number_id
+```
+
+The public `/api/send-whatsapp` endpoint accepts `phoneNumber` and `message` and limits each IP address to five sends per minute.
+
 
 

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
@@ -19,7 +19,10 @@ export default function AdminDashboard() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const [productForm, setProductForm] = useState(initialProductForm);
+  const [selectedImage, setSelectedImage] = useState(null);
   const [submitting, setSubmitting] = useState(false);
+  const formRef = useRef(null);
+  const fileInputRef = useRef(null);
 
   useEffect(() => {
     if (!user || user.role !== 'admin') {
@@ -52,12 +55,19 @@ export default function AdminDashboard() {
   }, [navigate, token, user]);
 
   const handleInputChange = (event) => {
-    const { name, value, type, checked } = event.target;
+    const { name, value, type, checked, files } = event.target;
+
+    if (type === 'file') {
+      setSelectedImage(files && files[0] ? files[0] : null);
+      return;
+    }
+
     setProductForm((current) => ({
       ...current,
       [name]: type === 'checkbox' ? checked : value,
     }));
   };
+
 
   const handleSubmitProduct = async (event) => {
     event.preventDefault();
@@ -65,19 +75,24 @@ export default function AdminDashboard() {
     setError('');
 
     try {
-      const payload = {
-        ...productForm,
-        priceMin: Number(productForm.priceMin),
-        priceMax: Number(productForm.priceMax),
-      };
+      if (!selectedImage) {
+        throw new Error('Please choose a PNG image file.');
+      }
+      const formData = new FormData();
+      formData.append('title',productForm.title);
+      formData.append('image',selectedImage);
+      formData.append('priceMin',productForm.priceMin);
+      formData.append('priceMax',productForm.priceMax);
+      formData.append('featured',productForm.featured);
+      formData.append('popular',productForm.popular);
+   
 
       const response = await fetch('/api/products', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${token}`,
+        Authorization: `Bearer ${token}`,
         },
-        body: JSON.stringify(payload),
+        body: formData,
       });
 
       const data = await response.json();
@@ -85,10 +100,19 @@ export default function AdminDashboard() {
         throw new Error(data.error || data.message || 'Unable to save product');
       }
 
-      setProductForm(initialProductForm);
+      setProductForm({ ...initialProductForm });
+      setSelectedImage(null);
+      formRef.current?.reset();
+      if (fileInputRef.current) {
+        fileInputRef.current.value = '';
+      }
       const refreshed = await fetch('/api/admin/dashboard', {
         headers: { Authorization: `Bearer ${token}` },
       });
+      if (!refreshed.ok){
+        throw new Error (refreshed.error || refreshed.message || 'unable to load products');
+
+      }
       const dashboardData = await refreshed.json();
       setDashboard(dashboardData);
     } catch (err) {
@@ -210,7 +234,7 @@ export default function AdminDashboard() {
             <div className="grid gap-6 xl:grid-cols-[0.95fr_1.05fr]">
               <div className="rounded-2xl bg-white p-5 shadow-sm ring-1 ring-slate-200">
                 <h2 className="text-xl font-semibold">Add product</h2>
-                <form onSubmit={handleSubmitProduct} className="mt-5 space-y-4">
+                <form ref={formRef} onSubmit={handleSubmitProduct} className="mt-5 space-y-4">
                   <input
                     name="title"
                     className="w-full rounded-xl border border-slate-200 px-3 py-2"
@@ -220,13 +244,17 @@ export default function AdminDashboard() {
                     required
                   />
                   <input
+                    ref={fileInputRef}
                     name="image"
+                    type="file"
+                    accept="image/png"
                     className="w-full rounded-xl border border-slate-200 px-3 py-2"
-                    placeholder="Image URL"
-                    value={productForm.image}
                     onChange={handleInputChange}
                     required
                   />
+                  {selectedImage && (
+                    <p className="text-xs text-slate-500">Selected file: {selectedImage.name}</p>
+                  )}
                   <div className="grid gap-4 sm:grid-cols-2">
                     <input
                       name="priceMin"

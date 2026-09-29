@@ -1,4 +1,5 @@
 import { Product } from '../models/index.js';
+import { supabase } from '../utils/supabaseClient.js';
 
 const initialProducts = [
   {
@@ -135,19 +136,37 @@ export const getProductById = async (req, res, next) => {
 
 export const createProduct = async (req, res, next) => {
   try {
-    const { title, image, priceMin, priceMax, featured, popular } = req.body;
+    const { title, priceMin, priceMax, featured, popular } = req.body;
+    const file = req.file;
 
-    if (!title || !image || priceMin === undefined || priceMax === undefined) {
+    if (!title || !file || priceMin === undefined || priceMax === undefined) {
       return res.status(400).json({ error: 'Title, image, min price, and max price are required' });
     }
+    if (file.mimetype !== 'image/png'){
+      return res.status(400).json({error: 'Only PNG files are allowed'});
+    }
 
+    const bucketName = 'product-images';
+    const fileName = `${Date.now()}-${file.originalname.replace(/\s+/g,'-')}`;
+    const {data: uploadData, error: upLoadError} = await supabase.storage.from(bucketName).upload(fileName, file.buffer,{
+      cacheControl: '3600',
+      upsert: false,
+      contentType: file.mimetype,
+    });
+    if (upLoadError){
+      return res.status(500).json({error: upLoadError.message || 'Image upload failed' });
+    }
+    const {data: publicUrlData} = supabase.storage.from(bucketName).getPublicUrl(uploadData.path);
+      if (!publicUrlData?.publicUrl) {
+      return res.status(500).json({ error: 'Could not create public image URL.' });
+    }
     const product = await Product.create({
       title,
-      image,
+      image: publicUrlData.publicUrl,
       priceMin: Number(priceMin),
       priceMax: Number(priceMax),
-      featured: Boolean(featured),
-      popular: Boolean(popular),
+      featured: featured === 'true' || featured === true,
+      popular: popular === 'true' || popular === true,
     });
 
     res.status(201).json({ message: 'Product created successfully', product: formatProduct(product) });

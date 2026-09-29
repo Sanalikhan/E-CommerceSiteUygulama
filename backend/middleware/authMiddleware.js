@@ -1,6 +1,7 @@
 import jwt from 'jsonwebtoken';
 import { User } from '../models/index.js';
 
+
 const authMiddleware = async (req, res, next) => {
   const authHeader = req.headers.authorization;
   if (!authHeader || !authHeader.startsWith('Bearer ')) {
@@ -9,7 +10,7 @@ const authMiddleware = async (req, res, next) => {
 
   const token = authHeader.split(' ')[1];
 
-  try {
+  try { 
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
     const user = await User.findByPk(decoded.id);
 
@@ -24,7 +25,7 @@ const authMiddleware = async (req, res, next) => {
       name: user.name,
     };
     next();
-  } catch (error) {
+  } catch {
     return res.status(401).json({ error: 'Invalid or expired token' });
   }
 };

@@ -12,6 +12,7 @@ import OrdersPage from './pages/OrdersPage';
 import AdminDashboard from './pages/AdminDashboard';
 import Header from './components/layout/sections/Header';
 import Footer from './components/layout/sections/Footer';
+import WhatsAppButton from './components/layout/WhatsAppButton';
 import './App.css';
 
 function App() {
@@ -35,6 +36,7 @@ function App() {
           </Routes>
         </main>
         <Footer />
+        <WhatsAppButton />
       </div>
     </BrowserRouter>
   );

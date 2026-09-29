@@ -1,16 +1,7 @@
 import { Order, OrderItem, Product, User } from '../models/index.js';
 
 const formatMoney = (value) => Number(value || 0);
-/*
-const getAdminDashboard = (req,res,next)=>{
-  try{
 
-  }
-  catch{
-
-  }
-}
-  */
 
 
 export const getAdminDashboard = async (req, res, next) => {
