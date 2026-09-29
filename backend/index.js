@@ -49,7 +49,7 @@ app.use(notFound);
 app.use(errorHandler);
 
 const ensureDefaultAdmin = async () => {
-  const adminEmail = 'admin@cecmhs.com';
+  const adminEmail = process.env.ADMIN_EMAIL;
   const existingAdmin = await User.findOne({ where: { email: adminEmail } });
 
   if (!existingAdmin) {
@@ -57,11 +57,11 @@ const ensureDefaultAdmin = async () => {
       name: 'System Admin',
       username: 'admin',
       email: adminEmail,
-      passwordHash: await bcrypt.hash('admin123', 10),
+      passwordHash: await bcrypt.hash('process.env.ADMIN_PASSWORD', 10),
       role: 'admin',
       termsAccepted: true,
     });
-    console.log('Default admin created: admin@cecmhs.com / admin123');
+    console.log(`Default admin created: ${process.env.ADMIN_EMAIL} / ${process.env.ADMIN_PASSWORD}`);
   }
 };
 
