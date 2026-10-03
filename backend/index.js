@@ -57,11 +57,11 @@ const ensureDefaultAdmin = async () => {
       name: 'System Admin',
       username: 'admin',
       email: adminEmail,
-      passwordHash: await bcrypt.hash('process.env.ADMIN_PASSWORD', 10),
+      passwordHash: await bcrypt.hash(process.env.ADMIN_PASSWORD, 10),
       role: 'admin',
       termsAccepted: true,
     });
-    console.log(`Default admin created: ${process.env.ADMIN_EMAIL} / ${process.env.ADMIN_PASSWORD}`);
+    console.log(`Default admin created`);
   }
 };
 
