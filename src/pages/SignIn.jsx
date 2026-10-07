@@ -58,7 +58,7 @@ export default function SignIn() {
     setLoading(true);
     setError('');
     try {
-      const res = await fetch('/api/auth/google', {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/auth/google`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ idToken: response.credential }),
@@ -93,7 +93,7 @@ export default function SignIn() {
     setLoading(true);
 
     try {
-      const response = await fetch('/api/auth/login', {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/auth/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password }),

@@ -17,7 +17,7 @@ export default function OrdersPage() {
       setError(null);
 
       try {
-        const response = await fetch('/api/orders/me', {
+        const response = await fetch(`${import.meta.env.VITE_API_URL}/api/orders/me`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },

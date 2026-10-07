@@ -27,7 +27,7 @@ export default function WhatsAppButton() {
     setIsSending(true);
     setFeedback(null);
     try {
-      const response = await fetch('/api/send-whatsapp', {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/send-whatsapp`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

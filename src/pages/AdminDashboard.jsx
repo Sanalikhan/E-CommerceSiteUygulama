@@ -32,7 +32,7 @@ export default function AdminDashboard() {
 
     const fetchDashboard = async () => {
       try {
-        const response = await fetch('/api/admin/dashboard', {
+        const response = await fetch(`${import.meta.env.VITE_API_URL}/api/admin/dashboard`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -87,7 +87,7 @@ export default function AdminDashboard() {
       formData.append('popular',productForm.popular);
    
 
-      const response = await fetch('/api/products', {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/products`, {
         method: 'POST',
         headers: {
         Authorization: `Bearer ${token}`,
@@ -106,7 +106,7 @@ export default function AdminDashboard() {
       if (fileInputRef.current) {
         fileInputRef.current.value = '';
       }
-      const refreshed = await fetch('/api/admin/dashboard', {
+      const refreshed = await fetch(`${import.meta.env.VITE_API_URL}/api/admin/dashboard`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       if (!refreshed.ok){
