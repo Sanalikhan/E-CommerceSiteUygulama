@@ -128,7 +128,7 @@ export default function AdminDashboard() {
     }
 
     try {
-      const response = await fetch(`/api/products/${productId}`, {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/${productId}`, {
         method: 'DELETE',
         headers: {
           Authorization: `Bearer ${token}`,

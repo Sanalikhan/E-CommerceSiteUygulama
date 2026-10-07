@@ -6,7 +6,7 @@ export const submitOrder = createAsyncThunk(
     try {
       const state = thunkAPI.getState();
       const token = state.auth.token;
-      const baseUrl = import.meta.env.VITE_API_BASE_URL ?? '/api';
+      const baseUrl = import.meta.env.VITE_API_URL ?? '/api';
       const headers = { 'Content-Type': 'application/json' };
       if (token) {
         headers.Authorization = `Bearer ${token}`;

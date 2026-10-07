@@ -65,7 +65,7 @@ const initialState = {
 export const fetchProducts = createAsyncThunk(
   'catalog/fetchProducts',
   async (_, thunkAPI) => {
-    const baseUrl = import.meta.env.VITE_API_BASE_URL ?? '/api';
+    const baseUrl = import.meta.env.VITE_API_URL ?? '/api';
     const response = await fetch(`${baseUrl}/products`);
     if (!response.ok) {
       const message = await response.text();
