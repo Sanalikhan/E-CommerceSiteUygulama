@@ -6,13 +6,13 @@ export const submitOrder = createAsyncThunk(
     try {
       const state = thunkAPI.getState();
       const token = state.auth.token;
-      const baseUrl = import.meta.env.VITE_API_URL ?? '/api';
+      const baseUrl = import.meta.env.VITE_API_URL;
       const headers = { 'Content-Type': 'application/json' };
       if (token) {
         headers.Authorization = `Bearer ${token}`;
       }
 
-      const response = await fetch(`${baseUrl}/orders`, {
+      const response = await fetch(`${baseUrl}/api/orders`, {
         method: 'POST',
         headers,
         body: JSON.stringify({ items }),
