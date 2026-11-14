@@ -168,11 +168,25 @@ export default function SignIn() {
       </div>
 
       <div className="mt-6">
-        <div id="googleSignInButton" className="mt-2" />
+        <style>{`
+          #googleSignInButton iframe {
+            border-radius: 9999px !important;
+            overflow: hidden !important;
+          }
+          #googleSignInButton > div {
+            margin: 0 auto !important;
+            display: flex !important;
+            justify-content: center !important;
+          }
+          #googleSignInButton button {
+            border-radius: 9999px !important;
+          }
+        `}</style>
+        <div id="googleSignInButton" className="mt-2 flex justify-center" />
         {!import.meta.env.VITE_GOOGLE_CLIENT_ID && (
-          <div className="mt-2 text-sm text-gray-500">Set `VITE_GOOGLE_CLIENT_ID` in your environment to enable Google Sign-In.</div>
+          <div className="mt-2 text-sm text-gray-500 text-center">Set `VITE_GOOGLE_CLIENT_ID` in your environment to enable Google Sign-In.</div>
         )}
-        <div className="mt-2 text-xs text-gray-400">Signing in with Google will collect name, email and profile picture from Google.</div>
+        <div className="mt-2 text-xs text-gray-400 text-center">Signing in with Google will collect name, email and profile picture from Google.</div>
       </div>
     </div>
     </div>
