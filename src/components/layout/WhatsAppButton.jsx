@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-const supportNumber = (import.meta.env.VITE_WHATSAPP_NUMBER || '18559050875').replace(/\D/g, '');
+const supportNumber = (import.meta.env.VITE_WHATSAPP_NUMBER || '15555551234').replace(/\D/g, '');
 const message = encodeURIComponent('Hello, I would like help with your products and services.');
 const whatsappUrl = `https://wa.me/${supportNumber}?text=${message}`;
 

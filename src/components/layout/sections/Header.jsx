@@ -25,7 +25,7 @@ export default function Header() {
 
 
   return (
-    <header className="bg-[#650404] w-full text-white">
+    <header className="bg-[#2F2D42] w-full text-white">
       <div className="mx-auto flex max-w-350 items-center justify-between px-5 py-10 sm:px-8 lg:px-10">
         <div className="flex items-center">
           <img className="h-10 w-auto sm:h-12 blur-sm" src={logo} alt="logo" />
