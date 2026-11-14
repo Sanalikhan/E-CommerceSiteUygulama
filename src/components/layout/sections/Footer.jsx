@@ -75,11 +75,6 @@ export default function Footer(){
             <ServicesGridStyle/>
         </div>
 
-        {/* Contact */}
-        <div className=" sm:flex sm:flex-col sm:gap-4 hidden">
-          <ContactFooterGrid/>
-        </div>
-
       </div>
 
       {/* Bottom bar */}
