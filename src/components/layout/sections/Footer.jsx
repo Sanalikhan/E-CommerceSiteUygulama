@@ -5,10 +5,10 @@ import { ServicesGridStyle } from "../../others/ServicesFooterGrid";
 import { ContactFooterGrid } from "../../others/ContactFooterGrid";
 export default function Footer(){
     return(
-        <div className="bg-emerald-600 text-gray-300 w-full flex flex-col items-center relative">
+        <div className="bg-[#2F2D42] text-gray-300 w-full flex flex-col items-center relative">
         <Newsletter/>
         <img src={logo} alt="logo" className="md:w-70 w-50 absolute top-35 lg:left-40 md:left-30 sm:left-20 left-10 blur-sm"/>
-    <div className="bg-emerald-600 w-[90%] sm:w-[70%] text-white py-14 mt-4">
+    <div className="bg-[#2F2D42] w-[90%] sm:w-[70%] text-white py-14 mt-4">
 
       {/* Top section */}
       <div className="flex justify-between gap-5 sm:gap-10 relative">
