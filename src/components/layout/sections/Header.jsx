@@ -40,7 +40,7 @@ export default function Header() {
           Menu
         </button>
 
-        <nav ref={menuRef} className={`absolute inset-x-0 top-full z-20 bg-[#650404] px-5 pb-5 transition-all duration-300 sm:static sm:block sm:w-auto sm:px-0 ${menuOpen ? 'block' : 'hidden'}`} >
+        <nav ref={menuRef} className={`absolute inset-x-0 top-full z-20 bg-[#2F2D42] px-5 pb-5 transition-all duration-300 sm:static sm:block sm:w-auto sm:px-0 ${menuOpen ? 'block' : 'hidden'}`} >
           <div className="flex flex-col sm:flex-row sm:items-center sm:gap-6 lg:gap-8">
             <ul className="flex flex-col gap-3 text-[12px] font-nunito sm:flex-row sm:items-center sm:gap-6 lg:gap-8">
             <li>
