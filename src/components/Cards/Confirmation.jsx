@@ -15,7 +15,7 @@ export function Confirmation({ onClose }) {
           ✕
         </button>
 
-        <p className="text-lg font-semibold mb-6">
+        <p className="text-lg font-semibold mb-6 text-black">
           The item has been successfully added to the cart.
         </p>
 
