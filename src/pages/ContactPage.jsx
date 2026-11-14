@@ -71,15 +71,15 @@ export default function ContactPage() {
               <div className="mt-8 space-y-6 text-black">
                 <div>
                   <h3 className="font-semibold text-black">Phone</h3>
-                  <p>800-922-6120</p>
+                  <p className="blur-sm select-none">800-XXX-XXXX</p>
                 </div>
                 <div>
                   <h3 className="font-semibold text-black">Email</h3>
-                  <p>sales@cechms.com</p>
+                  <p className="blur-sm select-none">contact@company.com</p>
                 </div>
                 <div>
                   <h3 className="font-semibold text-black">Address</h3>
-                  <p>Industrial Solutions Division, 1234 Warehouse Drive, City, State</p>
+                  <p className="blur-sm select-none">Company Address, City, State, ZIP</p>
                 </div>
               </div>
             </div>

@@ -7,10 +7,10 @@ export default function AboutPage() {
       <div className="px-5 py-10 sm:px-10 lg:px-20 xl:px-32">
         <section className="max-w-5xl mx-auto">
           <div className="mb-8">
-            <p className="text-xs uppercase tracking-[0.3em] text-[#FFA920] font-bold">About Custom Equipment Co.</p>
+            <p className="text-xs uppercase tracking-[0.3em] text-[#FFA920] font-bold">About EQUIP.ELECTRIC</p>
             <h1 className="mt-4 text-3xl sm:text-4xl font-bold text-black">Reliable Industrial Storage and Safety Solutions</h1>
             <p className="mt-4 text-sm sm:text-base text-black leading-7">
-              Custom Equipment Co. delivers engineered material handling systems, secure storage, and protective barriers for warehouses, manufacturing facilities, logistics centers and more. Our product range includes storage cabinets, safety cages, bollards, barrier gates and customized solutions designed to improve safety, organization, and operational efficiency.
+              EQUIP.ELECTRIC delivers engineered material handling systems, secure storage, and protective barriers for warehouses, manufacturing facilities, logistics centers and more. Our product range includes storage cabinets, safety cages, bollards, barrier gates and customized solutions designed to improve safety, organization, and operational efficiency.
             </p>
           </div>
 

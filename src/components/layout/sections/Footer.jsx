@@ -7,7 +7,7 @@ export default function Footer(){
     return(
         <div className="bg-[#2F2D42] text-gray-300 w-full flex flex-col items-center relative">
         <Newsletter/>
-        <img src={logo} alt="logo" className="md:w-70 w-50 absolute top-35 lg:left-40 md:left-30 sm:left-20 left-10"/>
+        <img src={logo} alt="logo" className="md:w-70 w-50 absolute top-35 lg:left-40 md:left-30 sm:left-20 left-10 blur-sm"/>
     <div className="bg-[#2F2D42] w-[90%] sm:w-[70%] text-white py-14 mt-4">
 
       {/* Top section */}
@@ -83,10 +83,9 @@ export default function Footer(){
       </div>
 
       {/* Bottom bar */}
-      <div className="flex justify-between items-center border-t border-gray-600 mt-10 pt-6 text-gray-300 text-xs font-semibold font-nunito">
+      <div className="flex justify-center items-center border-t border-gray-600 mt-10 pt-6 text-gray-300 text-xs font-semibold font-nunito">
 
-        <span>© All Copyright 2026 by cechms.co</span>
-        <span>Designed And Developed by Esco Logics</span>
+        <span>Designed And Developed by Sana Khan</span>
 
       </div>
         </div>
