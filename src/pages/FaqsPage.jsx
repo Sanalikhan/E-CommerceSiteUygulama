@@ -27,15 +27,18 @@ export default function FaqsPage() {
   ];
 
   return (
-    <div className="mx-auto max-w-4xl px-5 py-10 text-gray-800">
-      <h2 className="mb-6 text-3xl font-bold text-white">FAQs</h2>
-      <div className="space-y-4">
-        {faqs.map((f, i) => (
-          <div key={i} className="rounded-md bg-white/5 p-4">
-            <h3 className="font-semibold text-white">{f.q}</h3>
-            <p className="mt-1 text-sm text-gray-200">{f.a}</p>
-          </div>
-        ))}
+    <div className="min-h-screen bg-white px-5 py-10 sm:px-10 lg:px-20 xl:px-32">
+      <div className="mx-auto max-w-4xl">
+        <p className="text-xs uppercase tracking-[0.3em] text-[#FFA920] font-bold">FAQs</p>
+        <h2 className="mt-4 mb-6 text-3xl sm:text-4xl font-bold text-black">Frequently Asked Questions</h2>
+        <div className="space-y-4">
+          {faqs.map((f, i) => (
+            <div key={i} className="rounded-lg bg-gray-50 p-6 border border-gray-200">
+              <h3 className="font-semibold text-black text-lg">{f.q}</h3>
+              <p className="mt-2 text-base text-black leading-7">{f.a}</p>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );
