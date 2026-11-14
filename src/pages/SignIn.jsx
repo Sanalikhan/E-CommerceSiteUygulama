@@ -126,7 +126,7 @@ export default function SignIn() {
           <div className="mx-auto max-w-md px-5 py-10 text-black bg-white border border-gray-400 rounded-4xl my-10">
       <h2 className="mb-6 text-2xl font-bold">Sign In</h2>
       {error && <div className="mb-4 text-sm text-red-400">{error}</div>}
-      <form onSubmit={handleSubmit} className="space-y-4 my-10 relative">
+      <form onSubmit={handleSubmit} className="space-y-4">
         <div>
           <label className="block text-sm text-black my-2">Email</label>
           <input
@@ -147,16 +147,26 @@ export default function SignIn() {
             className="w-full rounded-full px-3 py-2 text-black border border-gray-300"
           />
         </div>
-        <div>
+        <div className="pt-4">
           <button
             type="submit"
-            className="rounded-full bg-[#FFA920] px-4 py-2 font-medium absolute right-1/7"
+            className="w-full rounded-full bg-[#FFA920] px-4 py-3 font-medium text-white hover:bg-[#ffb549] transition"
             disabled={loading}
           >
             {loading ? 'Signing in...' : 'Sign In'}
           </button>
         </div>
       </form>
+
+      <div className="relative my-8">
+        <div className="absolute inset-0 flex items-center">
+          <div className="w-full border-t border-gray-300"></div>
+        </div>
+        <div className="relative flex justify-center text-sm">
+          <span className="px-4 bg-white text-gray-500">Or continue with</span>
+        </div>
+      </div>
+
       <div className="mt-6">
         <div id="googleSignInButton" className="mt-2" />
         {!import.meta.env.VITE_GOOGLE_CLIENT_ID && (
